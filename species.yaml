@@ -1,0 +1,9 @@
+filamentous_diazo:
+  - name: anabaena_ppc7120
+    url: ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/.../GCF_000009705.1_ASM970v1_protein.faa.gz
+  - name: nostoc_73102
+    url: ftp://...
+unicellular_diazo:
+  - name: cyanothece_51142
+    url: ftp://...
+# …and so on for the four groups
