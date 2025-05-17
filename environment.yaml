@@ -1,16 +1,26 @@
 name: cyano-diazotroph
 channels:
   - defaults
-  - bioconda
   - conda-forge
+  - bioconda
 dependencies:
+  # Python toolchain
   - python=3.10
-  - biopython
-  - pandas
-  - snakemake
-  - blast=2.11.0
-  - mcl
+  - pyyaml            # for reading config/species.yaml in Python
+  - biopython         # FASTA handling, if needed
+  - pandas            # data manipulation in Python
+  - snakemake         # workflow engine
+
+  # BLAST & clustering
+  - blast=2.11        # NCBI BLAST+
+  - mcl               # markov clustering
+
+  # R for downstream analysis & plotting
   - r-base=4.2
-  - r-ggplot2
-  - r-dplyr
-  - interproscan
+  - r-data.table      # fast table I/O
+  - r-dplyr           # data wrangling
+  - r-ggplot2         # plotting
+  - r-yaml            # reading species.yaml in R
+
+  # Domain annotation
+  - interproscan5     # InterProScan command-line tool
