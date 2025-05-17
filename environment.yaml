@@ -1,0 +1,16 @@
+name: cyano-diazotroph
+channels:
+  - defaults
+  - bioconda
+  - conda-forge
+dependencies:
+  - python=3.10
+  - biopython
+  - pandas
+  - snakemake
+  - blast=2.11.0
+  - mcl
+  - r-base=4.2
+  - r-ggplot2
+  - r-dplyr
+  - interproscan
