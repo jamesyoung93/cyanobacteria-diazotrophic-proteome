@@ -6,7 +6,7 @@ import gzip
 import shutil
 
 # Load species configuration
-with open("config/species.yaml") as fh:
+with open("species.yaml") as fh:
     species_cfg = yaml.safe_load(fh)
 
 for group, entries in species_cfg.items():
