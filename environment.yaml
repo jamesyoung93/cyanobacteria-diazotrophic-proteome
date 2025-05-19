@@ -23,4 +23,4 @@ dependencies:
   - r-yaml            # reading species.yaml in R
 
   # Domain annotation
-  - interproscan5     # InterProScan command-line tool
+  - interproscan=5.55_88.0     # InterProScan command-line tool
