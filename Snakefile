@@ -1,7 +1,7 @@
 import yaml
 
 # Load species config (for reference if you need it in custom rules)
-species_cfg = yaml.safe_load(open("config/species.yaml"))
+species_cfg = yaml.safe_load(open("species.yaml"))
 
 # A little “sentinel” file to mark that all raw FASTAs have been fetched
 DOWNLOAD_SENTINEL = "data/raw/.download_complete"
