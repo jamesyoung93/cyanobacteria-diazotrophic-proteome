@@ -9,6 +9,7 @@ dependencies:
   - pyyaml            # for reading config/species.yaml in Python
   - biopython         # FASTA handling, if needed
   - pandas            # data manipulation in Python
+  - matplotlib        # plotting cluster size distribution
   - snakemake         # workflow engine
 
   # BLAST & clustering

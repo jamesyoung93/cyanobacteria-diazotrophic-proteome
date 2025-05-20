@@ -3,15 +3,45 @@ filamentous_diazotrophic:
     url: ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/009/705/GCF_000009705.1_ASM970v1/GCF_000009705.1_ASM970v1_protein.faa.gz
   - name: nostoc_punctiforme_pcc73102
     url: ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/020/025/GCF_000020025.1_ASM2002v1/GCF_000020025.1_ASM2002v1_protein.faa.gz
+  - name: anabaena_variabilis_atcc29413
+    url: TODO
+  - name: nostoc_azollae_0708
+    url: TODO
+  - name: nostoc_sp_pcc7524
+    url: TODO
 
 unicellular_diazotrophic:
   - name: crocosphaera_subtropica_atcc51142
     url: "https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000001203"
+  - name: cyanothece_sp_atcc51142
+    url: TODO
+  - name: crocosphaera_watsonii_wh8501
+    url: TODO
+  - name: gloeothece_sp_6803
+    url: TODO
+  - name: cyanosphaera_ocelotica_wh8902
+    url: TODO
 
 filamentous_non_diazotrophic:
   - name: arthrospira_platensis_nies39
     url: "https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000006803"
+  - name: arthrospira_maxima_cs-328
+    url: TODO
+  - name: lyngbya_aestuarii_bl0902
+    url: TODO
+  - name: limnothrix_planctonica_pcm8136
+    url: TODO
+  - name: trichodesmium_erythraeum_ims101
+    url: TODO
 
 unicellular_non_diazotrophic:
   - name: synechocystis_sp_pcc6803
     url: "https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000009640"
+  - name: synechococcus_elongatus_pcc7942
+    url: TODO
+  - name: prochlorococcus_marinus_mediterranei
+    url: TODO
+  - name: cyanidioschyzon_merolae_10d
+    url: TODO
+  - name: gloeobacter_violaceus_pcc7421
+    url: TODO
