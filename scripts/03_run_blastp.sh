@@ -10,7 +10,7 @@ blastp \
   -query data/db/all_cyano.faa \
   -evalue 1e-5 \
   -num_threads $CPU \
-  -outfmt "6 qseqid sseqid pident length qlen slen" \
+  -outfmt "6 qseqid sseqid pident length qlen slen evalue" \
   -out results/blastp/blastp_all.out
 
 echo "[DONE] blastp_all.out"

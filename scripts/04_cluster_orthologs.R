@@ -2,7 +2,7 @@
 library(data.table)
 
 # Paths
-blast_file   <- "results/blastp/blastp_all.out"
+blast_file   <- "results/blastp/blastp_filtered.out"
 out_dir      <- "results/clusters"
 mcl_input    <- file.path(out_dir, "blast.mci")
 clusters_txt <- file.path(out_dir, "clusters.txt")
@@ -11,7 +11,7 @@ mapping_tsv  <- file.path(out_dir, "clusters_mapping.tsv")
 dir.create(out_dir, recursive=TRUE, showWarnings=FALSE)
 
 # 1) Read and filter BLAST hits
-cols <- c("qseqid","sseqid","pident","length","qlen","slen")
+cols <- c("qseqid","sseqid","pident","length","qlen","slen","evalue")
 blast <- fread(blast_file, header=FALSE, col.names=cols)
 
 filtered <- blast[
