@@ -6,12 +6,12 @@ filamentous_diazotrophic:
 
 unicellular_diazotrophic:
   - name: crocosphaera_subtropica_atcc51142
-    url: https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/proteomes/UP000001203/UP000001203.fasta.gz
+    url: ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/proteomes/UP000001203/UP000001203.fasta.gz
 
 filamentous_non_diazotrophic:
   - name: arthrospira_platensis_nies39
-    url: https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/proteomes/UP000006803/UP000006803.fasta.gz
+    url: ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/proteomes/UP000006803/UP000006803.fasta.gz
 
 unicellular_non_diazotrophic:
   - name: synechocystis_sp_pcc6803
-    url: https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/proteomes/UP000009640/UP000009640.fasta.gz
+    url: ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/proteomes/UP000009640/UP000009640.fasta.gz
