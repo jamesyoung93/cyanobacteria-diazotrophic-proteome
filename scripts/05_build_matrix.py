@@ -4,7 +4,7 @@ import yaml
 import os
 
 # Load species → group mapping
-with open("config/species.yaml") as f:
+with open("species.yaml") as f:
     cfg = yaml.safe_load(f)
 
 sp_to_group = {}
