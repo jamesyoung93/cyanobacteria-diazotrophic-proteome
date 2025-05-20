@@ -26,8 +26,7 @@ ipr_raw <- fread(
   "results/annotations/all_interpro.tsv",
   sep        = "\t",
   header     = FALSE,
-  fill       = TRUE,
-  comment.char = ""
+  fill       = TRUE
 )
 col.names <- c("protein_acc","md5","seq_length","analysis",
                "signature_acc","signature_desc","start","end",
