@@ -22,11 +22,19 @@ diazo_clusters <- rownames(mat)[is_diazo_sp]
 bg_clusters    <- rownames(mat)
 
 # 4) Load InterProScan results & mapping
-ipr     <- fread("results/annotations/all_interpro.tsv", header=FALSE,
-                 col.names=c("protein_acc","md5","seq_length","analysis",
-                             "signature_acc","signature_desc","start","end",
-                             "score","status","date","ipr_acc","ipr_desc",
-                             "GO","pathways"))
+ipr_raw <- fread(
+  "results/annotations/all_interpro.tsv",
+  sep        = "\t",
+  header     = FALSE,
+  fill       = TRUE,
+  comment.char = ""
+)
+col.names <- c("protein_acc","md5","seq_length","analysis",
+               "signature_acc","signature_desc","start","end",
+               "score","status","date","ipr_acc","ipr_desc",
+               "GO","pathways")
+ipr <- setnames(ipr_raw[, 1:length(col.names), with=FALSE], col.names)
+                            
 mapping <- fread("results/clusters/clusters_mapping.tsv",
                  header=FALSE, col.names=c("clusterID","member"))
 mapping[, clusterID := as.character(clusterID)]
