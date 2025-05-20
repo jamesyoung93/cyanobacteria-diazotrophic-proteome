@@ -33,3 +33,16 @@ python3 scripts/cluster_size_distribution.py
 
 The Uniprot proteome links use HTTPS. If you encounter download issues,
 verify the URLs in `species.yaml`.
+
+### Adjusting BLAST filtering
+
+The workflow now keeps the raw BLAST results and allows filtering by
+percent identity and e-value prior to clustering. Default thresholds are
+40% identity and `1e-10` for the e-value. You can tweak these by editing
+the `filter_blast_hits` rule in the `Snakefile` or running the filtering
+utility directly:
+
+```bash
+scripts/filter_blast_hits.py results/blastp/blastp_all.out \
+    results/blastp/blastp_filtered.out --pident 50 --evalue 1e-20
+```

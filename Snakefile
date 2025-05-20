@@ -53,12 +53,26 @@ rule run_blastp:
     shell:
         "scripts/03_run_blastp.sh"
 
+rule filter_blast_hits:
+    """
+    Filter BLAST hits by percent identity and e-value.
+    """
+    input:
+        "results/blastp/blastp_all.out"
+    output:
+        "results/blastp/blastp_filtered.out"
+    params:
+        pident=40,
+        evalue=1e-10
+    shell:
+        "scripts/filter_blast_hits.py {input} {output} --pident {params.pident} --evalue {params.evalue}"
+
 rule cluster_orthologs:
     """
     Filter the BLAST hits and cluster with MCL into ortholog groups.
     """
     input:
-        "results/blastp/blastp_all.out"
+        "results/blastp/blastp_filtered.out"
     output:
         clusters="results/clusters/clusters.txt",
         mapping="results/clusters/clusters_mapping.tsv"
