@@ -25,5 +25,11 @@ To only fetch the raw FASTA files you can run:
 snakemake data/raw/.download_complete
 ```
 
+After clustering, you can inspect the cluster size distribution with:
+
+```bash
+python3 scripts/cluster_size_distribution.py
+```
+
 The Uniprot proteome links use HTTPS. If you encounter download issues,
 verify the URLs in `species.yaml`.
