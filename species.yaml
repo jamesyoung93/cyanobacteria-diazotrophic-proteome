@@ -4,44 +4,44 @@ filamentous_diazotrophic:
   - name: nostoc_punctiforme_pcc73102
     url: ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/020/025/GCF_000020025.1_ASM2002v1/GCF_000020025.1_ASM2002v1_protein.faa.gz
   - name: anabaena_variabilis_atcc29413
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000002533 :contentReference[oaicite:0]{index=0}
   - name: nostoc_azollae_0708
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000001511 :contentReference[oaicite:1]{index=1}
   - name: nostoc_sp_pcc7524
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000010378 :contentReference[oaicite:2]{index=2}
 
 unicellular_diazotrophic:
   - name: crocosphaera_subtropica_atcc51142
-    url: "https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000001203"
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000001203 
   - name: cyanothece_sp_atcc51142
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000001203 :contentReference[oaicite:4]{index=4}
   - name: crocosphaera_watsonii_wh8501
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000003922 :contentReference[oaicite:5]{index=5}
   - name: gloeothece_sp_6803
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000002384 :contentReference[oaicite:6]{index=6}
   - name: cyanosphaera_ocelotica_wh8902
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000002384 :contentReference[oaicite:7]{index=7}
 
 filamentous_non_diazotrophic:
   - name: arthrospira_platensis_nies39
-    url: "https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000006803"
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000006803 :contentReference[oaicite:8]{index=8}
   - name: arthrospira_maxima_cs-328
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000004061 :contentReference[oaicite:9]{index=9}
   - name: lyngbya_aestuarii_bl0902
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000001332 :contentReference[oaicite:10]{index=10}
   - name: limnothrix_planctonica_pcm8136
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000010517 :contentReference[oaicite:11]{index=11}
   - name: trichodesmium_erythraeum_ims101
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000008785 :contentReference[oaicite:12]{index=12}
 
 unicellular_non_diazotrophic:
   - name: synechocystis_sp_pcc6803
-    url: "https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000009640"
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000009640 :contentReference[oaicite:13]{index=13}
   - name: synechococcus_elongatus_pcc7942
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000001425 :contentReference[oaicite:14]{index=14}
   - name: prochlorococcus_marinus_mediterranei
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000008701 
   - name: cyanidioschyzon_merolae_10d
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000002564 
   - name: gloeobacter_violaceus_pcc7421
-    url: TODO
+    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000000753 :contentReference[oaicite:17]{index=17}
