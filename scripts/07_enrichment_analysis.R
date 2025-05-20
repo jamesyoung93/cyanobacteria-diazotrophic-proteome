@@ -5,7 +5,7 @@ library(ggplot2)
 library(yaml)
 
 # 1) Load species groups
-cfg <- yaml::read_yaml("config/species.yaml")
+cfg <- yaml::read_yaml("species.yaml")
 diazo      <- unlist(lapply(cfg[grep("diazo", names(cfg))], function(x) sapply(x, `[[`, "name")))
 nondiazo   <- unlist(lapply(cfg[grep("non-?diazo", names(cfg), ignore.case=TRUE)], function(x) sapply(x, `[[`, "name")))
 
