@@ -63,7 +63,7 @@ rule cluster_orthologs:
         clusters="results/clusters/clusters.txt",
         mapping="results/clusters/clusters_mapping.tsv"
     shell:
-        "scripts/04_cluster_orthologs.R"
+        "RScript scripts/04_cluster_orthologs.R"
 
 rule build_matrix:
     """
