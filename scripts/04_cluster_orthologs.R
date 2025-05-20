@@ -29,7 +29,7 @@ fwrite(edges, mcl_input, sep = "\t", col.names = FALSE)
 #system(sprintf("mcl %s -I 1.5 -o %s", mcl_input, clusters_txt))
 
 message("[MCL] clustering…")
-system(sprintf("mcl --abc %s -I 1.5 -o %s", mcl_input, clusters_txt))
+system(sprintf("mcl %s --abc -I 1.5 -o %s", mcl_input, clusters_txt))
 
 # 4) Parse clusters.txt → clusters_mapping.tsv
 lines  <- readLines(clusters_txt)
