@@ -32,9 +32,22 @@ non_diazo_species = [e["name"] for g in non_diazo_groups for e in cfg[g]]
 cols = ["qseqid","sseqid","pident","length","qlen","slen","evalue"]
 hits = pd.read_csv(args.blast, sep="\t", header=None, names=cols)
 
-# Extract species names (assumes FASTA headers start with species name followed by '_')
-hits["q_species"] = hits["qseqid"].str.split("_").str[0]
-hits["s_species"] = hits["sseqid"].str.split("_").str[0]
+# Extract species names by matching against the known list of prefixes. FASTA
+# headers were prefixed as "speciesID_original" when building the BLAST
+# database, and species IDs themselves contain underscores. We therefore match
+# each sequence ID against all species names sorted by length to avoid partial
+# matches.
+all_species = sorted(diazo_species + non_diazo_species, key=len, reverse=True)
+
+def extract_species(seqid: str) -> str:
+    for sp in all_species:
+        if seqid.startswith(f"{sp}_"):
+            return sp
+    # Fallback in case the prefix was not found
+    return seqid.split("_")[0]
+
+hits["q_species"] = hits["qseqid"].apply(extract_species)
+hits["s_species"] = hits["sseqid"].apply(extract_species)
 
 # Hits from diazotroph queries to non-diazotroph subjects
 hits_d2n = hits[hits["q_species"].isin(diazo_species) & hits["s_species"].isin(non_diazo_species)]
