@@ -61,6 +61,10 @@ If you only want the BLAST search and a list of proteins that lack hits in non-d
 snakemake results/blastp/blastp_filtered.out --cores 16
 ```
 
+If the script later complains that `results/blastp/blastp_filtered.out` is
+missing, rerun the command above. This step runs the BLAST search and filters
+the hits so the `find_unique_proteins.py` script has input to work with.
+
 Then run the helper script to summarise unique proteins:
 
 ```bash
