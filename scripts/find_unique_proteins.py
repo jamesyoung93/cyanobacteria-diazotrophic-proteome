@@ -3,11 +3,15 @@
 import pandas as pd
 import yaml
 import argparse
+import os
 
 parser = argparse.ArgumentParser(description="Find unique diazotroph proteins")
 parser.add_argument("blast", help="Filtered BLAST tabular file")
 parser.add_argument("output_dir", help="Directory for output tables")
 args = parser.parse_args()
+
+# Ensure the output directory exists
+os.makedirs(args.output_dir, exist_ok=True)
 
 # Load species groups
 with open("species.yaml") as fh:
