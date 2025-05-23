@@ -21,8 +21,19 @@ mapping = pd.read_csv(
     dtype={"clusterID": int}
 )
 
-# Extract species from member (assumes names like "anabaena_ppc7120_protXYZ")
-mapping["species"] = mapping["member"].str.split("_").str[0]
+# Extract species from member IDs. Sequence headers were prefixed with the
+# full species name followed by an underscore when building the BLAST
+# database. Species names themselves contain underscores, so simply splitting
+# on '_' would break. Instead, match against the known species list.
+species_prefixes = sorted(sp_to_group.keys(), key=len, reverse=True)
+
+def extract_species(seqid: str) -> str:
+    for sp in species_prefixes:
+        if seqid.startswith(sp + "_"):
+            return sp
+    return seqid.split("_")[0]
+
+mapping["species"] = mapping["member"].apply(extract_species)
 
 # Build presence/absence matrix
 species_list = sorted(sp_to_group.keys())
