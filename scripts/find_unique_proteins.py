@@ -22,7 +22,8 @@ for grp, entries in cfg.items():
     for e in entries:
         sp_to_group[e["name"]] = grp
 
-diazo_groups = [g for g in cfg if "diazotrophic" in g]
+diazo_groups = [g for g in cfg if "diazotrophic" in g and "non_diazotrophic" not in g]
+#diazo_groups = [g for g in cfg if "diazotrophic" in g]
 non_diazo_groups = [g for g in cfg if "non_diazotrophic" in g]
 
 diazo_species = [e["name"] for g in diazo_groups for e in cfg[g]]
