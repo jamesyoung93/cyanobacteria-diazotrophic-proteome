@@ -67,55 +67,55 @@ rule filter_blast_hits:
     shell:
         "scripts/filter_blast_hits.py {input} {output} --pident {params.pident} --evalue {params.evalue}"
 
-rule cluster_orthologs:
-    """
-    Filter the BLAST hits and cluster with MCL into ortholog groups.
-    """
-    input:
-        "results/blastp/blastp_filtered.out"
-    output:
-        clusters="results/clusters/clusters.txt",
-        mapping="results/clusters/clusters_mapping.tsv"
-    shell:
-        "scripts/04_cluster_orthologs.R"
+#rule cluster_orthologs:
+#    """
+#    Filter the BLAST hits and cluster with MCL into ortholog groups.
+#    """
+#    input:
+#        "results/blastp/blastp_filtered.out"
+#    output:
+#        clusters="results/clusters/clusters.txt",
+#        mapping="results/clusters/clusters_mapping.tsv"
+#    shell:
+#        "scripts/04_cluster_orthologs.R"
 
-rule build_matrix:
-    """
-    Build presence/absence matrix of clusters × species.
-    """
-    input:
-        mapping="results/clusters/clusters_mapping.tsv"
-    output:
-        pres_abs="results/matrices/pres_abs.csv",
-        species_groups="results/matrices/species_groups.csv"
-    shell:
-        "scripts/05_build_matrix.py"
+#rule build_matrix:
+#    """
+#    Build presence/absence matrix of clusters × species.
+#    """
+#    input:
+#        mapping="results/clusters/clusters_mapping.tsv"
+#    output:
+#        pres_abs="results/matrices/pres_abs.csv",
+#        species_groups="results/matrices/species_groups.csv"
+#    shell:
+#        "scripts/05_build_matrix.py"
 
-rule annotate_interpro:
-    """
-    Run InterProScan on the full proteome to pull in domain and GO annotations.
-    """
-    input:
-        fasta="data/db/all_cyano.faa"
-    output:
-        interpro="results/annotations/all_interpro.tsv"
-    threads: 16
-    shell:
-        "scripts/06_annotate_interpro.sh"
+#rule annotate_interpro:
+#    """
+#    Run InterProScan on the full proteome to pull in domain and GO annotations.
+#    """
+#    input:
+#        fasta="data/db/all_cyano.faa"
+#    output:
+#        interpro="results/annotations/all_interpro.tsv"
+#    threads: 16
+#    shell:
+#        "scripts/06_annotate_interpro.sh"
 
-rule enrichment_analysis:
-    """
-    Identify diazotroph-specific clusters, run enrichment,
-    and extract lead genes for Anabaena PCC 7120 & Cyanothece 51142.
-    """
-    input:
-        pres_abs="results/matrices/pres_abs.csv",
-        mapping="results/clusters/clusters_mapping.tsv",
-        interpro="results/annotations/all_interpro.tsv",
-        # config is read inside the R script, so we don’t need to list it as input
-    output:
-        pdf="results/figures/enrichment_bar.pdf",
-        results="results/figures/enrichment_results.tsv",
-        leads="results/figures/lead_genes.tsv"
-    shell:
-        "scripts/07_enrichment_analysis.R"
+#rule enrichment_analysis:
+#    """
+#    Identify diazotroph-specific clusters, run enrichment,
+#    and extract lead genes for Anabaena PCC 7120 & Cyanothece 51142.
+#    """
+#    input:
+#        pres_abs="results/matrices/pres_abs.csv",
+#        mapping="results/clusters/clusters_mapping.tsv",
+#        interpro="results/annotations/all_interpro.tsv",
+#        # config is read inside the R script, so we don’t need to list it as input
+#    output:
+#        pdf="results/figures/enrichment_bar.pdf",
+#        results="results/figures/enrichment_results.tsv",
+#        leads="results/figures/lead_genes.tsv"
+#    shell:
+#        "scripts/07_enrichment_analysis.R"
