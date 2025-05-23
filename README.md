@@ -46,3 +46,20 @@ utility directly:
 scripts/filter_blast_hits.py results/blastp/blastp_all.out \
     results/blastp/blastp_filtered.out --pident 50 --evalue 1e-20
 ```
+
+### Identifying diazotroph-specific proteins
+
+If you only want the BLAST search and a list of proteins that lack hits in non-diazotrophic genomes, run the workflow up to the filtering step:
+
+```bash
+snakemake results/blastp/blastp_filtered.out --cores 16
+```
+
+Then run the helper script to summarise unique proteins:
+
+```bash
+python3 scripts/find_unique_proteins.py \
+    results/blastp/blastp_filtered.out results/unique_lists
+```
+
+This will produce tables in `results/unique_lists` listing proteins found only in diazotrophic species, and subsets unique to filamentous or unicellular diazotrophs.
