@@ -62,7 +62,7 @@ rule filter_blast_hits:
     output:
         "results/blastp/blastp_filtered.out"
     params:
-        pident=40,
+        pident=80,
         evalue=1e-10
     shell:
         "scripts/filter_blast_hits.py {input} {output} --pident {params.pident} --evalue {params.evalue}"
