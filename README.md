@@ -47,6 +47,11 @@ scripts/filter_blast_hits.py results/blastp/blastp_all.out \
     results/blastp/blastp_filtered.out --pident 50 --evalue 1e-20
 ```
 
+The BLAST database is built from all downloaded FASTA files with each
+sequence header prefixed by its species name (taken from `species.yaml`).
+Downstream scripts rely on this convention to map proteins back to their
+source species.
+
 ### Identifying diazotroph-specific proteins
 
 If you only want the BLAST search and a list of proteins that lack hits in non-diazotrophic genomes, run the workflow up to the filtering step:
