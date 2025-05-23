@@ -51,9 +51,7 @@ The BLAST database is built from all downloaded FASTA files with each
 sequence header prefixed by its species name (taken from `species.yaml`).
 Downstream scripts rely on this convention to map proteins back to their
 source species.
-Because species names themselves contain underscores, the helper script
-parses sequence IDs by matching these exact prefixes rather than simply
-splitting on underscores.
+
 
 ### Identifying diazotroph-specific proteins
 
