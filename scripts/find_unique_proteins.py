@@ -10,6 +10,13 @@ parser.add_argument("blast", help="Filtered BLAST tabular file")
 parser.add_argument("output_dir", help="Directory for output tables")
 args = parser.parse_args()
 
+# Ensure the BLAST results exist before proceeding
+if not os.path.isfile(args.blast):
+    raise SystemExit(
+        f"BLAST results not found: {args.blast}\n"
+        "Run the `filter_blast_hits` step first (see README)."
+    )
+
 # Ensure the output directory exists
 os.makedirs(args.output_dir, exist_ok=True)
 
