@@ -46,12 +46,45 @@ hits = pd.read_csv(args.blast, sep="\t", header=None, names=cols)
 # species list.
 species_list = sorted(sp_to_group.keys(), key=len, reverse=True)
 
+# Build a mapping from sequence accessions (without the species prefix) back
+# to their species by scanning the FASTA file used to create the BLAST
+# database. This helps recover the species name even if the BLAST output
+# lacks the explicit prefix for some reason.
+id_to_species = {}
+fasta_path = "data/db/all_cyano.faa"
+if os.path.exists(fasta_path):
+    with open(fasta_path) as fh:
+        for line in fh:
+            if line.startswith(">"):
+                header = line[1:].strip().split()[0]
+                for sp in species_list:
+                    pre = sp + "_"
+                    if header.startswith(pre):
+                        orig = header[len(pre):]
+                        id_to_species[orig] = sp
+                        id_to_species[header] = sp
+                        # Also record just the accession if the header
+                        # follows the typical "db|ACC|..." pattern so
+                        # lookups work even when BLAST trims the prefix
+                        if "|" in orig:
+                            parts = orig.split("|")
+                            if len(parts) > 1:
+                                id_to_species[parts[1]] = sp
+                        break
+
 def extract_species(seqid: str) -> str:
+    # First check explicit mapping from the FASTA database
+    if seqid in id_to_species:
+        return id_to_species[seqid]
+    # BLAST may report IDs like "sp|ACC|..."; try the accession alone
+    if "|" in seqid:
+        acc = seqid.split("|")[1]
+        if acc in id_to_species:
+            return id_to_species[acc]
     for sp in species_list:
         if seqid.startswith(sp + "_"):
             return sp
-    # Fallback to first token if no match
-    return seqid.split("_")[0]
+    return seqid
 
 hits["q_species"] = hits["qseqid"].apply(extract_species)
 hits["s_species"] = hits["sseqid"].apply(extract_species)
