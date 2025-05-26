@@ -9,19 +9,7 @@ dependencies:
   - pyyaml            # for reading config/species.yaml in Python
   - biopython         # FASTA handling, if needed
   - pandas            # data manipulation in Python
-  - matplotlib        # plotting cluster size distribution
   - snakemake         # workflow engine
 
-  # BLAST & clustering
+  # BLAST
   - blast=2.11        # NCBI BLAST+
-  - mcl               # markov clustering
-
-  # R for downstream analysis & plotting
-  - r-base=4.2
-  - r-data.table      # fast table I/O
-  - r-dplyr           # data wrangling
-  - r-ggplot2         # plotting
-  - r-yaml            # reading species.yaml in R
-
-  # Domain annotation
-  - interproscan=5.55_88.0     # InterProScan command-line tool

@@ -1,8 +1,17 @@
 # cyanobacteria-diazotrophic-proteome
 
-This repository contains a Snakemake workflow for collecting cyanobacterial proteomes,
-building an all-vs-all BLAST database, clustering orthologs, annotating with
-InterProScan, and running enrichment analysis.
+This repository contains a minimal Snakemake workflow to fetch cyanobacterial proteomes,
+build an all‑vs‑all BLAST database and identify proteins conserved within
+different groups of diazotrophs.  The final output consists of three lists of
+protein accessions describing the cohorts illustrated below:
+
+1. `unicellular_specific.tsv` – proteins present in all unicellular diazotrophic
+   cyanobacteria but absent from filamentous diazotrophs and non‑diazotrophs.
+2. `filamentous_specific.tsv` – proteins conserved across filamentous
+   diazotrophic cyanobacteria but missing from unicellular diazotrophs and
+   non‑diazotrophs.
+3. `diazotroph_common.tsv` – proteins found in both unicellular and filamentous
+   diazotrophic species but absent from non‑diazotrophic cyanobacteria.
 
 ## Usage
 
@@ -13,68 +22,25 @@ mamba env create -f environment.yaml -n cyano-diazotroph
 conda activate cyano-diazotroph
 ```
 
-2. Run the workflow (adjust `--cores` as appropriate):
+2. Run the workflow (adjust `--cores` as needed):
 
 ```bash
 snakemake --cores 16
 ```
 
-To only fetch the raw FASTA files you can run:
-
-```bash
-snakemake data/raw/.download_complete
-```
-
-After clustering, you can inspect the cluster size distribution with:
-
-```bash
-python3 scripts/cluster_size_distribution.py
-```
-
-The Uniprot proteome links use HTTPS. If you encounter download issues,
-verify the URLs in `species.yaml`.
+The workflow will download the configured proteomes, build the BLAST database,
+run the all‑vs‑all search, filter the results and produce the three cohort files
+in `results/cohorts/`.
 
 ### Adjusting BLAST filtering
 
-The workflow now keeps the raw BLAST results and allows filtering by
-percent identity and e-value prior to clustering. Default thresholds are
-40% identity and `1e-10` for the e-value. You can tweak these by editing
-the `filter_blast_hits` rule in the `Snakefile` or running the filtering
-utility directly:
+By default BLAST hits are filtered at 80% identity with a maximum e‑value of
+`1e-10`.  You can override these thresholds either by calling the filtering
+script directly or by passing parameters to Snakemake:
 
 ```bash
-scripts/filter_blast_hits.py results/blastp/blastp_all.out \
-    results/blastp/blastp_filtered.out --pident 50 --evalue 1e-20
+snakemake --cores 16 --config pident=70 evalue=1e-20
 ```
 
-The BLAST database is built from all downloaded FASTA files with each
-sequence header prefixed by its species name (taken from `species.yaml`).
-Downstream scripts rely on this convention to map proteins back to their
-source species.
-
-
-### Identifying diazotroph-specific proteins
-
-If you only want the BLAST search and a list of proteins that lack hits in non-diazotrophic genomes, run the workflow up to the filtering step:
-
-```bash
-snakemake results/blastp/blastp_filtered.out --cores 16
-```
-
-If the script later complains that `results/blastp/blastp_filtered.out` is
-missing, rerun the command above. This step runs the BLAST search and filters
-the hits so the `find_unique_proteins.py` script has input to work with.
-
-Then run the helper script to summarise unique proteins:
-
-```bash
-python3 scripts/find_unique_proteins.py \
-    results/blastp/blastp_filtered.out results/unique_lists
-```
-
-This will produce tables in `results/unique_lists` listing proteins found only in diazotrophic species, and subsets unique to filamentous or unicellular diazotrophs.
-
-The script infers the species name for each sequence using the prefixes added
-when building the BLAST database. If your BLAST output lacks these prefixes,
-the script also consults `data/db/all_cyano.faa` to map accessions back to their
-species.
+This will propagate the values to the filtering step and subsequent cohort
+calculation.
