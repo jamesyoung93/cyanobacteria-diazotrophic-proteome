@@ -63,12 +63,24 @@ if os.path.exists(fasta_path):
                         orig = header[len(pre):]
                         id_to_species[orig] = sp
                         id_to_species[header] = sp
+                        # Also record just the accession if the header
+                        # follows the typical "db|ACC|..." pattern so
+                        # lookups work even when BLAST trims the prefix
+                        if "|" in orig:
+                            parts = orig.split("|")
+                            if len(parts) > 1:
+                                id_to_species[parts[1]] = sp
                         break
 
 def extract_species(seqid: str) -> str:
     # First check explicit mapping from the FASTA database
     if seqid in id_to_species:
         return id_to_species[seqid]
+    # BLAST may report IDs like "sp|ACC|..."; try the accession alone
+    if "|" in seqid:
+        acc = seqid.split("|")[1]
+        if acc in id_to_species:
+            return id_to_species[acc]
     for sp in species_list:
         if seqid.startswith(sp + "_"):
             return sp
@@ -78,7 +90,7 @@ def extract_species(seqid: str) -> str:
     if acc in id_to_species:
         return id_to_species[acc]
     # Fallback to the first token
-    return acc
+    return seqid
 
 hits["q_species"] = hits["qseqid"].apply(extract_species)
 hits["s_species"] = hits["sseqid"].apply(extract_species)
