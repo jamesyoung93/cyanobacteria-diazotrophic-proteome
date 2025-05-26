@@ -73,3 +73,8 @@ python3 scripts/find_unique_proteins.py \
 ```
 
 This will produce tables in `results/unique_lists` listing proteins found only in diazotrophic species, and subsets unique to filamentous or unicellular diazotrophs.
+
+The script infers the species name for each sequence using the prefixes added
+when building the BLAST database. If your BLAST output lacks these prefixes,
+the script also consults `data/db/all_cyano.faa` to map accessions back to their
+species.
