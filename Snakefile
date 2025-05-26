@@ -14,7 +14,10 @@ rule all:
     input:
         "results/cohorts/unicellular_specific.tsv",
         "results/cohorts/filamentous_specific.tsv",
-        "results/cohorts/diazotroph_common.tsv"
+        "results/cohorts/diazotroph_common.tsv",
+        "results/cohorts/unicellular_specific.csv",
+        "results/cohorts/filamentous_specific.csv",
+        "results/cohorts/diazotroph_common.csv"
 
 rule download_proteomes:
     """
@@ -75,9 +78,12 @@ rule identify_cohorts:
     input:
         "results/blastp/blastp_filtered.out"
     output:
-        uni="results/cohorts/unicellular_specific.tsv",
-        fil="results/cohorts/filamentous_specific.tsv",
-        common="results/cohorts/diazotroph_common.tsv"
+        uni_tsv="results/cohorts/unicellular_specific.tsv",
+        fil_tsv="results/cohorts/filamentous_specific.tsv",
+        common_tsv="results/cohorts/diazotroph_common.tsv",
+        uni_csv="results/cohorts/unicellular_specific.csv",
+        fil_csv="results/cohorts/filamentous_specific.csv",
+        common_csv="results/cohorts/diazotroph_common.csv"
     shell:
         "scripts/identify_cohorts.py {input} results/cohorts"
 
