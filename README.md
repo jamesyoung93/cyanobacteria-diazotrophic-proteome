@@ -6,12 +6,13 @@ different groups of diazotrophs.  The final output consists of three lists of
 protein accessions describing the cohorts illustrated below:
 
 1. `unicellular_specific.tsv` – proteins present in all unicellular diazotrophic
-   cyanobacteria but absent from filamentous diazotrophs and non‑diazotrophs.
+   cyanobacteria. Hits to filamentous diazotrophs may also be reported and can
+   be filtered out downstream if desired.
 2. `filamentous_specific.tsv` – proteins conserved across filamentous
-   diazotrophic cyanobacteria but missing from unicellular diazotrophs and
-   non‑diazotrophs.
+   diazotrophic cyanobacteria. Hits to unicellular diazotrophs may likewise be
+   included.
 3. `diazotroph_common.tsv` – proteins found in both unicellular and filamentous
-   diazotrophic species but absent from non‑diazotrophic cyanobacteria.
+   diazotrophic species while absent from non‑diazotrophic cyanobacteria.
 
 ## Usage
 
