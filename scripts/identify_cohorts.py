@@ -95,12 +95,12 @@ for qseqid, grp in hits.groupby("qseqid"):
 
     if q_sp in unicell_diazo:
         required = set(unicell_diazo) - {q_sp}
-        if required.issubset(target_species) and target_species.isdisjoint(set(fil_diazo)):
+        if required.issubset(target_species):
             cohort_uni.append(row)
 
     if q_sp in fil_diazo:
         required = set(fil_diazo) - {q_sp}
-        if required.issubset(target_species) and target_species.isdisjoint(set(unicell_diazo)):
+        if required.issubset(target_species):
             cohort_fil.append(row)
 
 def write_tables(rows, basename, avg_col):
