@@ -1,4 +1,4 @@
-# cyanobacteria-diazotrophic-proteome
+## cyanobacteria-diazotrophic-proteome
 
 This repository contains a minimal Snakemake workflow to fetch cyanobacterial proteomes,
 build an all‑vs‑all BLAST database and identify proteins conserved within
