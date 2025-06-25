@@ -23,25 +23,12 @@ unicellular_diazotrophic:
     url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000002384
 
 filamentous_non_diazotrophic:
-  - name: arthrospira_platensis_nies39
-    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000006803
   - name: arthrospira_maxima_cs-328
     url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000004061
   - name: lyngbya_aestuarii_bl0902
     url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000001332
-  - name: limnothrix_planctonica_pcm8136
-    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000010517
-  - name: trichodesmium_erythraeum_ims101
-    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000008785
+
 
 unicellular_non_diazotrophic:
-  - name: synechocystis_sp_pcc6803
-    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000009640
   - name: synechococcus_elongatus_pcc7942
     url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000001425
-  - name: prochlorococcus_marinus_mediterranei
-    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000008701
-  - name: cyanidioschyzon_merolae_10d
-    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000002564
-  - name: gloeobacter_violaceus_pcc7421
-    url: https://rest.uniprot.org/uniprotkb/stream?format=fasta&compressed=true&query=proteome:UP000000753
