@@ -6,9 +6,13 @@ species_cfg = yaml.safe_load(open("species.yaml"))
 # A little “sentinel” file to mark that all raw FASTAs have been fetched
 DOWNLOAD_SENTINEL = "data/raw/.download_complete"
 
-# Allow overriding BLAST filtering thresholds via `--config pident=XX evalue=YY`
+# Allow overriding BLAST filtering thresholds via `--config pident=XX evalue=YY qcov=0.7 scov=0.7 use_rbh=True`
 PIDENT = config.get("pident", 80)
 EVALUE = config.get("evalue", 1e-10)
+QCOV = config.get("qcov", 0.0)
+SCOV = config.get("scov", 0.0)
+USE_RBH = config.get("use_rbh", False)
+RBH_ARGS = "--use_rbh --species_yaml species.yaml" if USE_RBH else ""
 
 rule all:
     input:
@@ -28,7 +32,7 @@ rule download_proteomes:
         DOWNLOAD_SENTINEL
     shell:
         """
-        scripts/01_download_proteomes.py
+        python scripts/01_download_proteomes.py
         touch {output}
         """
 
@@ -44,7 +48,7 @@ rule build_blast_db:
         pin="data/db/cyano_db.pin",
         psq="data/db/cyano_db.psq"
     shell:
-        "scripts/02_build_blast_db.sh"
+        "bash scripts/02_build_blast_db.sh"
 
 rule run_blastp:
     """
@@ -57,7 +61,7 @@ rule run_blastp:
         "results/blastp/blastp_all.out"
     threads: 16
     shell:
-        "scripts/03_run_blastp.sh"
+        "bash scripts/03_run_blastp.sh"
 
 rule filter_blast_hits:
     """
@@ -69,9 +73,12 @@ rule filter_blast_hits:
         "results/blastp/blastp_filtered.out"
     params:
         pident=PIDENT,
-        evalue=EVALUE
+        evalue=EVALUE,
+        qcov=QCOV,
+        scov=SCOV,
+        use_rbh=USE_RBH
     shell:
-        "scripts/filter_blast_hits.py {input} {output} --pident {params.pident} --evalue {params.evalue}"
+        "python scripts/filter_blast_hits.py {input} {output} --pident {params.pident} --evalue {params.evalue} --qcov {params.qcov} --scov {params.scov} {RBH_ARGS}"
 
 rule identify_cohorts:
     """Summarise conserved protein cohorts across species groups."""
@@ -85,5 +92,5 @@ rule identify_cohorts:
         fil_csv="results/cohorts/filamentous_specific.csv",
         common_csv="results/cohorts/diazotroph_common.csv"
     shell:
-        "scripts/identify_cohorts.py {input} results/cohorts"
+        "python scripts/identify_cohorts.py {input} results/cohorts"
 

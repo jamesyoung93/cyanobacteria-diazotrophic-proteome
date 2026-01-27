@@ -1,0 +1,15 @@
+name: cyano-diazotroph
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  # Python toolchain
+  - python=3.10
+  - pyyaml            # for reading config/species.yaml in Python
+  - biopython         # FASTA handling, if needed
+  - pandas            # data manipulation in Python
+  - snakemake         # workflow engine
+
+  # BLAST
+  - blast=2.11        # NCBI BLAST+
