@@ -13,7 +13,8 @@ cd cyanobacteria-diazotrophic-proteome
 conda create -n proteome python=3.10 -y
 conda activate proteome
 pip install -r requirements.txt
-conda install -c bioconda blast
+conda install -c bioconda blast #we specifically used ncbi-blast/2.14.1
+
 ```
 
 ## Pipeline
