@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.py[cod]
+.snakemake/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
